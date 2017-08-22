@@ -1,0 +1,106 @@
+#####################################################
+# Parameterized Data for the APITestIT
+# - Each Test will be run against the complete set of
+# data entries here 
+# - The ITEST_ENV environment variable defines which yaml 
+# file is picked up. If this variable is not defined it 
+# defauls to "dev" and test-data-dev.yaml is picked up
+# - name : Name of the Test which will appear at runtime
+# - operation: GET, PUT, POST , DELETE
+# This will automatically setup the Rest Assured env to run
+# that operation
+# - response-body : If you want a complete comparison of the JSON response
+# Add the JSON to this field (Otherwise make as null)
+# - expected-code : Add the response status code expected
+# - query-params : If there are query params ,add them here or keep (null)
+# - request-body : For POST/PUT calls otherwise null
+# - test-data : Optional test data elements that you want to test against the
+# response.
+# ADDING NEW fields to the yaml
+# Keep it in sync with the parameters defined in APITestIT.java using the
+# @Parameter annotation
+# For example: The second field is operation and is bound to fOperation 
+#  @Parameter(value = 1)
+#  public String fOperation;
+# To Add new elements/fields follow the sample approach 1) Add new entry in each
+# data row (Set of fields per execution) 2) Add the corresponding parameter in the
+# APITestIT.java file with the @Parameter annotation specifying the position defined
+# in the yaml file
+#####################################################
+- name: test Hello1
+  operation: GET
+  uri: /idp/cart/v1/hello
+  response-body: |
+    {
+    "message": "Hello Hello12!"
+    }
+  expected-code: 200
+  query-params:
+    - name: Hello12
+    - param2: oneMore
+  request-body: null
+  test-data:
+    - data1: "value1"
+      data2: "value2"
+      data3: |
+        {
+          "sample": "json value"
+        }
+      data4: 1
+      data5: true
+      data6:
+        - key1: value1
+          key2: value2
+          key3: value3
+      data7:  1.22
+
+- name: test Hello2
+  operation: GET
+  uri: /idp/cart/v1/hello
+  response-body: null
+  expected-code: 200
+  query-params: null
+  request-body: null
+  test-data: null
+
+- name: test POST
+  operation: POST
+  uri: http://localhost:3000/api/v1/examples
+  response-body: null
+  expected-code: 201
+  query-params: null
+  request-body: |
+    {
+      "name": "Test Post"
+    }
+  test-data: null
+
+- name: test PUT
+  operation: PUT
+  uri: http://localhost:3000/api/v1/examples
+  response-body: null
+  expected-code: 405
+  query-params: null
+  request-body: |
+    {
+      "name": "Test Put"
+    }
+  test-data: null 
+
+- name: test DELETE
+  operation: DELETE
+  uri: http://localhost:3000/api/v1/examples/1
+  response-body: null
+  expected-code: 405
+  query-params: null
+  request-body: null
+  test-data: null
+ 
+- name: test Example
+  operation: GET
+  uri: http://localhost:3000/api/v1/shop/products
+  response-body: null
+  expected-code: 200
+  query-params: null
+  request-body: null
+  test-data: null
