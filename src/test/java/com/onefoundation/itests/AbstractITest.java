@@ -64,7 +64,7 @@ public abstract class AbstractITest {
 		this.conf = ConfigFactory.load("application-" + this.activeProfile);
 		this.baseURI = conf.getString("server.baseURI");
 		this.port = conf.getInt("server.port");
-		this.timeout = conf.getInt("idp.api.timeout");
+		this.timeout = conf.getInt("service.api.timeout");
 
 		final RequestSpecBuilder build = new RequestSpecBuilder().setBaseUri(baseURI).setPort(port);
 

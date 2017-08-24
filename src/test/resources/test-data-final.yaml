@@ -29,7 +29,7 @@
 #####################################################
 - name: test Hello1
   operation: GET
-  uri: /idp/cart/v1/hello
+  uri: /api/v1/hello
   response-body: |
     {
     "message": "Hello Hello12!"
@@ -56,7 +56,7 @@
 
 - name: test Hello2
   operation: GET
-  uri: /idp/cart/v1/hello
+  uri: /api/v1/hello
   response-body: null
   expected-code: 200
   query-params: null

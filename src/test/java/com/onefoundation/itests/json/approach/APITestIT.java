@@ -66,7 +66,7 @@ public class APITestIT extends AbstractITest {
 		final String name = this.testData.getInput();
 		final String expected = this.testData.getExpected();
 		// when:
-		final Response response = given().spec(rspec).parameters("name", name).get("/idp/cart/v1/hello");
+		final Response response = given().spec(rspec).parameters("name", name).get("/api/v1/hello");
 		// then:
 		response.then().log().all(); // log result
 		response.then().body("message", equalTo(expected)); // Auto JSON

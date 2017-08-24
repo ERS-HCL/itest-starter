@@ -10,7 +10,7 @@
 # This will automatically setup the Rest Assured env to run
 # that operation
 # - uri : If relative path is provided
-# For example : /idp/cart/v1/hello
+# For example : /api/v1/hello
 # The test will use the REST Assured host and port set application-${env}.properties
 # file
 # You can also directly add the complete URL as well (See examples below)
@@ -34,7 +34,7 @@
 #####################################################
 - name: test Hello1
   operation: GET
-  uri: /idp/cart/v1/hello
+  uri: /api/v1/hello
   response-body: |
     {
     "message": "Hello Hello12!"
@@ -61,7 +61,7 @@
 
 - name: test Hello2
   operation: GET
-  uri: /idp/cart/v1/hello
+  uri: /api/v1/hello
   response-body: null
   expected-code: 200
   query-params: null
