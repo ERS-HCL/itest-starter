@@ -1,0 +1,37 @@
+{
+	"dataset-hello": [
+		{
+			"input": "Hello1",
+			"expected": "{ \"message\": \"Hello Hello12!\" }",
+			"intVal": 1,
+			"boolVal": true,
+			"decVal": 1.20,
+			"listVal": [
+				{
+							"id": 1,
+							"name": "test"
+						}
+				]
+		},
+		{
+					"input": "Hello2",
+					"expected": "Hello Hello2!"
+		},
+		{
+					"input": "Hello3",
+					"expected": "Hello Hello2!"
+		}
+	],
+	"dataset-sa": [
+		{
+			"input": "Hello1",
+			"expected": "Hello Hello1!",
+			"cartId":	"AFXV1000-22-22"
+		},
+		{
+			"input": "Hello2",
+			"expected": "Hello Hello3!",
+			"cartId":	"AFXV1000-22-22ss"
+		}
+	]
+}

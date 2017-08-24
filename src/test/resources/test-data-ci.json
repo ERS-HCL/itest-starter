@@ -1,0 +1,21 @@
+{
+	"dataset-hello": [
+		{
+			"input": "Hello1",
+			"expected": "Hello Hello1!",
+			"intVal": 1,
+			"boolVal": true,
+			"decVal": 1.20,
+			"listVal": [
+				{
+							"field": "message",
+							"value": "Hello Hello1!"
+						}
+				]
+		},
+		{
+					"input": "Hello2",
+					"expected": "Hello Hello2!"
+		}
+	]
+}

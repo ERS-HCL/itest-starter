@@ -3,7 +3,9 @@ package com.onefoundation.itests.common;
 import static com.jayway.restassured.RestAssured.given;
 
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +14,10 @@ import java.util.Map;
 import org.yaml.snakeyaml.Yaml;
 
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
@@ -79,7 +85,7 @@ public final class RestUtil {
 	 * @return List - Parameterized Data from yaml
 	 * @throws FileNotFoundException
 	 */
-	public static <T> List<Object[]> getData(Class<T> clazz,String profile) throws FileNotFoundException {
+	public static <T> List<Object[]> getYamlData(Class<T> clazz,String profile) throws FileNotFoundException {
 		/* Load the file from the resources directory */
 		final ClassLoader classloader = clazz.getClassLoader();
 		InputStream input = classloader.getResourceAsStream("test-data-"+profile+".yaml");
@@ -97,6 +103,34 @@ public final class RestUtil {
 		return parameters;
 
 	}
+	
+	/**
+	 * Gets the test data.
+	 *
+	 * @param <T> the generic type
+	 * @param testName the test name
+	 * @param cls the cls
+	 * @return the test data
+	 */
+	public static <T> List<T> getJsonData(String testName, Class<T> cls) {
+		List<T> list = new ArrayList<T>();
+		try {
+			final String profile = getCurrentProfile();
+			final JsonElement jsonData = new JsonParser().parse(new FileReader("src/test/resources/test-data-"+profile+".json"));
+			final JsonElement dataSet = jsonData.getAsJsonObject().get("dataset-" + testName);
+			
+			Gson gson = new Gson();
+			JsonArray arry = dataSet.getAsJsonArray();
+			for (JsonElement jsonElement : arry) {
+				list.add(gson.fromJson(jsonElement, cls));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+
 
 	public static boolean isJson(String str) {
 	    try {

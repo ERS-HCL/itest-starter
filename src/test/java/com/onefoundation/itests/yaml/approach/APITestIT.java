@@ -1,4 +1,4 @@
-package com.onefoundation.itests.demo;
+package com.onefoundation.itests.yaml.approach;
 
 import java.io.FileNotFoundException;
 import java.util.Collection;
@@ -68,7 +68,7 @@ public class APITestIT extends AbstractITest {
 	/** Parameterized Data */
 	@Parameters(name = "ApiTest{index}:{0}")
 	public static Collection<Object[]> data() throws FileNotFoundException {
-		return RestUtil.getData(APITestIT.class,RestUtil.getCurrentProfile());
+		return RestUtil.getYamlData(APITestIT.class,RestUtil.getCurrentProfile());
 	}
 
 	/**
